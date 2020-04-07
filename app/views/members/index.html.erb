@@ -1,12 +1,36 @@
-<h1>Member Page</h1>
-<br>
-<div class="sign-up">
-  <div class="sign-up-title">
-    <a href="/members/new"> Be Our Member</a>
+<h1>會員註冊</h1>
+
+<table> 
+
+
+  <%= form_for(@member, url: '/members', method: 'post') do |f| %>
+
+  <% if @member.errors.any? %>
+    <ul>
+      <% @member.errors.full_messages.each do |message|%>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :email, "帳號" %>
+    <%= f.text_field :email %>
   </div>
-</div>
-
-
-
-
-
+  <div>
+    <%= f.label :password, "密碼"%>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :password_confirmation, "確認密碼"%>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div>
+    <%= f.label :name, "名字"%>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.submit "註冊"%>
+  </div>
+  <% end %>
+</table>
